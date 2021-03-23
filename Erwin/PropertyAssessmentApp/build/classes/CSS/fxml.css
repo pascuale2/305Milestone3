@@ -1,0 +1,88 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+#AnchorPane{
+    -fx-background-color: #23272A;
+    -fx-text-fill: #DDDDDD;
+}
+
+.split-pane{
+    -fx-background-color: #23272A;
+    -fx-box-border: transparent;
+}
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #7289DA;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0em;
+ 
+}
+
+.table-view .column-header{
+    -fx-background-color: #2C2F33;
+    -fx-border-color: transparent;
+    -fx-text-fill: #EEEEEE;
+}
+
+.table-view .scroll-bar:vertical{
+    -fx-background-color:transparent;
+ 
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: #AAAAAA;
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+.table-column{
+    -fx-alignment: CENTER;
+    -fx-border-color: transparent;
+    -fx-text-fill: #AAAAAA;
+}
+
+.table-row-cell{
+    -fx-background-color: #2C2F33;
+    -fx-border-color: #23272A;
+    -fx-font-family: sans-serif;
+}
+
+.text-field{
+    -fx-background-color: #2C2F33;
+    -fx-text-fill: #AAAAAA;
+}
+
+.combo-box{
+    -fx-background-color: #2C2F33;
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #2C2F33;
+    -fx-text-fill: #FFFFFF;
+}
+
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #7289DA;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button{
+    -fx-background-color: #7289DA;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area .content{
+    -fx-background-color: #2C2F33;
+}
+
+.text-area{
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #23272A;
+}
+
