@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
+   <children>
+      <SplitPane dividerPositions="0.15" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="578.0" prefWidth="339.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" layoutX="53.0" layoutY="92.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextField fx:id="accountBox" layoutX="10.0" layoutY="64.0" onAction="#onEnter" prefHeight="26.0" prefWidth="178.0" AnchorPane.leftAnchor="10.0" />
+                              <TextField fx:id="addressBox" layoutX="14.0" layoutY="121.0" onAction="#onEnter" prefHeight="26.0" prefWidth="178.0" AnchorPane.leftAnchor="10.0" />
+                              <TextField fx:id="neighbourhoodBox" layoutX="10.0" layoutY="173.0" onAction="#onEnter" prefHeight="26.0" prefWidth="178.0" AnchorPane.leftAnchor="10.0" />
+                              <ComboBox fx:id="assessmentMenu" layoutX="14.0" layoutY="225.0" prefWidth="150.0" AnchorPane.leftAnchor="10.0" />
+                              <Button fx:id="searchBtn" layoutX="14.0" layoutY="256.0" mnemonicParsing="false" onAction="#searchBtnHandler" text="Search" AnchorPane.leftAnchor="10.0" />
+                              <Button fx:id="resetBtn" layoutX="80.0" layoutY="256.0" mnemonicParsing="false" onAction="#resetBtnHandler" text="Reset" />
+                              <Text layoutX="17.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find Property Assessment" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number:" AnchorPane.topAnchor="40.0" />
+                              <Text layoutX="13.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address (#suite #house street):" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0" />
+                              <Text layoutX="14.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neighbourhood:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="155.0" />
+                              <Text layoutX="10.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assessment Class:" AnchorPane.leftAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextArea id="statisticText" fx:id="statText" editable="false" layoutX="32.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="558.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="598.4" prefWidth="627.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                    <columns>
+                      <TableColumn fx:id="accountCol" prefWidth="100.0" text="Account" />
+                      <TableColumn fx:id="addressCol" prefWidth="150.0" text="Address" />
+                      <TableColumn fx:id="assessedCol" prefWidth="100.0" text="Assessed Value" />
+                      <TableColumn fx:id="assClassCol" prefWidth="150.0" text="Assessment Class 1" />
+                        <TableColumn fx:id="assClassCol2" prefWidth="150.0" text="Assessment Class 2" />
+                        <TableColumn fx:id="assClassCol3" prefWidth="150.0" text="Assessment Class 3" />
+                      <TableColumn fx:id="nCol" minWidth="0.0" prefWidth="200.0" text="Neighbourhood" />
+                      <TableColumn fx:id="latCol" minWidth="0.0" prefWidth="100.0" text="Latitude" />
+                      <TableColumn fx:id="longCol" prefWidth="100.0" text="Longitude" />
+                      
+                    </columns>
+                  </TableView>
+                  <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edmonton Property Assessment" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
