@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="729.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="propertyassessmentapp.FXMLController">
+    <stylesheets>
+        <URL value="@fxml.css" />
+    </stylesheets>
+   <children>
+      <Text id="headerText" fill="#f0ece2" layoutX="431.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edmonton Property Assessment Data" textAlignment="CENTER" wrappingWidth="317.81298828125">
+         <font>
+            <Font name="SansSerif Bold" size="19.0" />
+         </font>
+      </Text>
+      <TableView fx:id="propertyData" layoutY="36.0" prefHeight="693.0" prefWidth="1180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
+        <columns>
+            <TableColumn fx:id="account" prefWidth="96.0" text="Account" />
+            <TableColumn fx:id="address" prefWidth="194.0" text="Address" />
+          <TableColumn fx:id="assVal" prefWidth="142.0" text="Assessed Value" />
+          <TableColumn fx:id="assClass1" prefWidth="170.0" text="Assessment Class" />
+            <TableColumn fx:id="neighborhood" prefWidth="228.0" text="Neighbourhood" />
+            <TableColumn fx:id="latitude" prefWidth="173.0" text="Latitude" />
+            <TableColumn fx:id="longitude" prefWidth="176.0" text="Longitude" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

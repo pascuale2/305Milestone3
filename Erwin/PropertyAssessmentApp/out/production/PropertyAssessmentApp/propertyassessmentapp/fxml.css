@@ -1,0 +1,12 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+#AnchorPane{
+    -fx-background-color: #222831;
+/*    -fx-background-color: #30475e;*/
+}
