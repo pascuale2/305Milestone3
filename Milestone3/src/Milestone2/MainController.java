@@ -7,21 +7,34 @@ package Milestone2;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * FXML Controller class
@@ -67,6 +80,17 @@ public class MainController implements Initializable {
     private TableColumn<Property, String> assClassCol2;
     @FXML
     private TableColumn<Property, String> assClassCol3;
+    @FXML
+    private BarChart bChart;
+    @FXML
+    private PieChart piechart;
+    @FXML
+    private ChoiceBox wardSelect;
+    @FXML
+    private Button go;
+    @FXML
+    private TabPane tab;
+    
     
     
     /**
@@ -94,9 +118,11 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         handler = Milestone2.handler;
         resetTable();
+        setBChartData();
         
         
         initAssessmentClasses(handler);
+        initWardSelect();
     }
     
     /**
@@ -123,6 +149,13 @@ public class MainController implements Initializable {
         assessmentMenu.setItems(list);
         
     }
+    private void initWardSelect(){
+        ObservableList<String> list = FXCollections.observableArrayList();
+        for (int i = 1; i < 13; i++){
+            list.add("Ward " + i);
+        }
+        wardSelect.setItems(list);
+    }
     /**
      * --resetTable
      * @purpose To set/reset the initial values of the table, as well as the
@@ -146,6 +179,7 @@ public class MainController implements Initializable {
         // placeholder value
 //        table.setPlaceholder(new Label("No properties to display"));
         table.setItems((ObservableList<Property>) handler.getAllProperties());
+        
     }
     
     /**
@@ -211,4 +245,54 @@ public class MainController implements Initializable {
         }
     }
     
+    public void goBtnHandler() {
+        String ward = wardSelect.getValue().toString();
+        setPieData(ward);
+        tab.getSelectionModel().selectNext();
+    }
+    
+    public void setBChartData(){
+        PropertyHandler p;
+        ArrayList<Property> found;
+        BarChart.Series<String, Number> series = new XYChart.Series<>();
+                
+        for (int i = 1; i < 13; i++){
+            String ward = "Ward " + i;
+            found = handler.findPropertiesByWard(ward);
+            p = new PropertyHandler();
+            
+            for(int j = 0; j < found.size(); j++){
+                p.addProperty(found.get(j));
+            }
+            series.getData().add(new XYChart.Data(ward, p.getMean()));
+            
+        }
+        bChart.getData().addAll(series);
+    }
+    
+     public void setPieData(String ward){
+        PropertyHandler p;
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        ArrayList<Property> wardList;
+        ArrayList<Property> found = new ArrayList<>();
+        HashSet<String> s = new HashSet<>();
+        wardList = handler.findPropertiesByWard(ward);
+        
+            
+        for(int j = 0; j < wardList.size(); j++){
+            s.add(wardList.get(j).getNeighbourhood());
+        }
+        
+        
+        for (String str : s){
+            p = new PropertyHandler();
+            found = handler.findPropertiesByNeighbourhood(str);
+            
+            for(int j = 0; j < found.size(); j++){
+                p.addProperty(found.get(j));
+            }
+            pieData.add(new PieChart.Data(str, p.getMean()));
+        }
+        piechart.setData(pieData);
+    }
 }
