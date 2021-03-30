@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 /**
  * This class holds an ArrayList of property objects and implements
@@ -511,7 +512,7 @@ public class PropertyHandler {
         Neighbourhood temp = new Neighbourhood(this, userStringInput());
         
         if(temp.getAllProperties().isEmpty()){
-            System.out.println("Property not found.");
+            System.out.println("Property not found."); 
             return null;
         }
         return temp;
@@ -620,5 +621,24 @@ public class PropertyHandler {
         
         
         return propertiesToReturn;
+    }
+    
+    public ArrayList<Property> findPropertiesByWard(String ward){
+        ArrayList<Property> propertiesFound = new ArrayList();
+        for(int i = 0; i < properties.size(); i++){
+            if(properties.get(i).getFullAddress() == null ? ward == null : properties.get(i).getWard().equals(ward)){
+                propertiesFound.add(properties.get(i));
+            }
+        }
+        return propertiesFound;
+    }
+    public ArrayList<Property> findPropertiesByNeighbourhood(String nbrhd){
+        ArrayList<Property> propertiesFound = new ArrayList();
+        for(int i = 0; i < properties.size(); i++){
+            if(properties.get(i).getFullAddress() == null ? nbrhd == null : properties.get(i).getNeighbourhood().equals(nbrhd)){
+                propertiesFound.add(properties.get(i));
+            }
+        }
+        return propertiesFound;
     }
 }
