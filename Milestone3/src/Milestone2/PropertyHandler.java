@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
 
 /**
  * This class holds an ArrayList of property objects and implements
@@ -617,12 +616,18 @@ public class PropertyHandler {
             }
         }
         
-        
-        
-        
         return propertiesToReturn;
     }
-    
+    /**
+     * --findPropertiesByWard
+     * @purpose This returns a list of properties that match the ward param. It
+     * takes the ward, and searches through all the properties, adding each
+     * Property that matches the argument to a new ArrayList to be returned.
+     *    
+     * 
+     * @param ward
+     * @return propertiesFound - list of Properties that match the param
+     */
     public ArrayList<Property> findPropertiesByWard(String ward){
         ArrayList<Property> propertiesFound = new ArrayList();
         for(int i = 0; i < properties.size(); i++){
@@ -632,10 +637,60 @@ public class PropertyHandler {
         }
         return propertiesFound;
     }
+    /**
+     * --findPropertiesByNeighbourhood
+     * @purpose This returns a list of properties that match the nbrhd param. It
+     * takes the ward, and searches through all the properties, adding each
+     * Property that matches the argument to a new ArrayList to be returned.
+     *    
+     * 
+     * @param nbrhd
+     * @return propertiesFound - list of Properties that match the param
+     */
     public ArrayList<Property> findPropertiesByNeighbourhood(String nbrhd){
         ArrayList<Property> propertiesFound = new ArrayList();
         for(int i = 0; i < properties.size(); i++){
             if(properties.get(i).getFullAddress() == null ? nbrhd == null : properties.get(i).getNeighbourhood().equals(nbrhd)){
+                propertiesFound.add(properties.get(i));
+            }
+        }
+        return propertiesFound;
+    }
+    /**
+     * --findPropertiesByAssessmentClass
+     * @purpose This returns a list of properties that match the aClass param. It
+     * takes the ward, and searches through all the properties, adding each
+     * Property that matches the argument to a new ArrayList to be returned.
+     *    
+     * 
+     * @param aClass
+     * @return propertiesFound - list of Properties that match the param
+     */
+    public ArrayList<Property> findPropertiesByAssessmentClass(String aClass){
+        ArrayList<Property> propertiesFound = new ArrayList();
+        for(int i = 0; i < properties.size(); i++){
+            for (String c : properties.get(i).getClasses()){
+                if(c == null ? aClass == null : c.equals(aClass)){
+                    propertiesFound.add(properties.get(i));
+                }
+            }
+        }
+        return propertiesFound;
+    }
+    /**
+     * --findPropertiesByGarage
+     * @purpose This returns a list of properties that match the g param. It
+     * takes the ward, and searches through all the properties, adding each
+     * Property that matches the argument to a new ArrayList to be returned.
+     *    
+     * 
+     * @param g - Garage indicator (Y/N)
+     * @return propertiesFound - list of Properties that match the param
+     */
+    public ArrayList<Property> findPropertiesByGarage(String g){
+        ArrayList<Property> propertiesFound = new ArrayList();
+        for(int i = 0; i < properties.size(); i++){
+            if(properties.get(i).getGarage() == null ? g == null : properties.get(i).getGarage().equals(g)){
                 propertiesFound.add(properties.get(i));
             }
         }

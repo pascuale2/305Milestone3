@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -87,9 +88,18 @@ public class MainController implements Initializable {
     @FXML
     private ChoiceBox wardSelect;
     @FXML
+    private ChoiceBox pChartSelect;
+    @FXML
+    private Button seeWard;
+    @FXML
     private Button go;
     @FXML
     private TabPane tab;
+    @FXML
+    private Tab pieChartTab;
+    @FXML
+    private Label stats;
+    private String ward;
     
     
     
@@ -120,10 +130,15 @@ public class MainController implements Initializable {
         resetTable();
         setBChartData();
         
-        
         initAssessmentClasses(handler);
         initWardSelect();
+        pieChartTab.setDisable(true);
+        
+        
+        stats.setVisible(false);
+        
     }
+
     
     /**
      * --initAssessmentClasses
@@ -149,12 +164,31 @@ public class MainController implements Initializable {
         assessmentMenu.setItems(list);
         
     }
+    /**
+     * --initWardSelect
+     * @purpose helper function to initialize for setting the comboBox wardSelect items
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
     private void initWardSelect(){
         ObservableList<String> list = FXCollections.observableArrayList();
         for (int i = 1; i < 13; i++){
             list.add("Ward " + i);
         }
         wardSelect.setItems(list);
+    }
+    /**
+     * --initPieChartSelect
+     * @purpose helper function to initialize for setting the comboBox PieChartSelect items
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    private void initPieChartSelect(){
+        ObservableList<String> list = FXCollections.observableArrayList("Choose option for graph..."
+                ,"Assessment Class", "Neighbourhoods", "Garage");
+        pChartSelect.setItems(list);
     }
     /**
      * --resetTable
@@ -244,55 +278,230 @@ public class MainController implements Initializable {
             statText.setText(properties.getStatString());
         }
     }
-    
-    public void goBtnHandler() {
-        String ward = wardSelect.getValue().toString();
-        setPieData(ward);
+    /**
+     * --wardSelectBtnHandler
+     * @purpose handles the operation of the wardSelect search button in order
+     * to display pie chart data about each ward.
+     * 
+     *      This function sets the ward variable by getting the value from the 
+     *      choice box, and then goes to the next tab to display the pie chart
+     *      data for the selected ward.
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    public void wardSelectBtnHandler() {
+        ward = wardSelect.getValue().toString();
+        pieChartTab.setDisable(false);
+        nbrhdPieData();
+        initPieChartSelect();
         tab.getSelectionModel().selectNext();
+        
+        //Mouse Handlers for mousing over pie slices to see stats
+        for (final PieChart.Data data : piechart.getData()) {
+            data.getNode().addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
+                new EventHandler<MouseEvent>() {
+                    @Override 
+                    public void handle(MouseEvent e) {
+                       stats.setVisible(true);
+                       stats.setText("Name: " 
+                               + data.getName() + "\nNumber of Properties: " 
+                               + ((int)data.getPieValue()));
+                    }
+                });
+        }
+        for (final PieChart.Data data : piechart.getData()) {
+            data.getNode().addEventFilter(MouseEvent.MOUSE_EXITED_TARGET,
+                new EventHandler<MouseEvent>() {
+                    @Override 
+                    public void handle(MouseEvent e) {
+                       stats.setVisible(false);
+                    }
+                });
+        }
     }
-    
+    /**
+     * --setBChartData
+     * @purpose function to set the bar chart data, with each bar representing
+     * the average property assessment value for each ward.
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
     public void setBChartData(){
         PropertyHandler p;
         ArrayList<Property> found;
         BarChart.Series<String, Number> series = new XYChart.Series<>();
                 
         for (int i = 1; i < 13; i++){
-            String ward = "Ward " + i;
-            found = handler.findPropertiesByWard(ward);
+            String w = "Ward " + i;
+            found = handler.findPropertiesByWard(w);
             p = new PropertyHandler();
             
             for(int j = 0; j < found.size(); j++){
                 p.addProperty(found.get(j));
             }
-            series.getData().add(new XYChart.Data(ward, p.getMean()));
-            
+            series.getData().add(new XYChart.Data(w, p.getMean()));
         }
         bChart.getData().addAll(series);
     }
-    
-     public void setPieData(String ward){
+    /**
+     * --pChartSelect
+     * @purpose helper function to handle the selection of data for display in
+     * the pie chart
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    public void pChartSelect(){
+        String choice = pChartSelect.getValue().toString();
+        switch(choice){
+            case "Assessment Class" -> aClassPieData();
+            case "Neighbourhoods" -> nbrhdPieData();
+            case "Garage" -> garagePieData();
+        }
+        //Mouse Handlers for mousing over pie slices to see stats
+        for (final PieChart.Data data : piechart.getData()) {
+            data.getNode().addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
+                new EventHandler<MouseEvent>() {
+                    @Override 
+                    public void handle(MouseEvent e) {
+                       stats.setVisible(true);
+                       stats.setText("Name: " 
+                               + data.getName() + "\nNumber of Properties: " 
+                               + ((int)data.getPieValue()));
+                    }
+                });
+        }
+        for (final PieChart.Data data : piechart.getData()) {
+            data.getNode().addEventFilter(MouseEvent.MOUSE_EXITED_TARGET,
+                new EventHandler<MouseEvent>() {
+                    @Override 
+                    public void handle(MouseEvent e) {
+                       stats.setVisible(false);
+                    }
+                });
+        }
+    } 
+    /**
+     * --nbrhdPieData
+     * @purpose function used to set the pie chart display data to the an
+     * observable list of PieChart.Data containing the name and number of 
+     * properties as a percentage of the ward.
+     * 
+     *      function takes the current selected ward and builds an Set of 
+     *      neighbourhoods, which is used to build an observable list of 
+     *      PieChart data by creating a propertyhandler where each property
+     *      is within the neighbourhood. This observablelist is used for the 
+     *      data for the piechart.
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    public void nbrhdPieData(){
         PropertyHandler p;
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
-        ArrayList<Property> wardList;
         ArrayList<Property> found = new ArrayList<>();
         HashSet<String> s = new HashSet<>();
-        wardList = handler.findPropertiesByWard(ward);
-        
-            
+        ArrayList<Property> wardList = handler.findPropertiesByWard(ward);
+
+
         for(int j = 0; j < wardList.size(); j++){
             s.add(wardList.get(j).getNeighbourhood());
         }
-        
-        
+
         for (String str : s){
             p = new PropertyHandler();
             found = handler.findPropertiesByNeighbourhood(str);
-            
+
             for(int j = 0; j < found.size(); j++){
                 p.addProperty(found.get(j));
             }
-            pieData.add(new PieChart.Data(str, p.getMean()));
+            pieData.add(new PieChart.Data(str, p.getNumberOfProperties()));
         }
+        piechart.setTitle("Number of Properties Per Neighbourhood as a Percentage of " + ward);
         piechart.setData(pieData);
     }
+    /**
+     * --nbrhdPieData
+     * @purpose function used to set the pie chart display data to the an
+     * observable list of PieChart.Data containing the name and number of 
+     * properties as a percentage of the ward.
+     * 
+     *      function takes the current selected ward and builds an Set of 
+     *      AssessmentClasses, which is used to build an observable list of 
+     *      PieChart data by creating a propertyhandler where each property
+     *      is within the assessment class. This observablelist is used for the 
+     *      data for the piechart.
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    public void aClassPieData(){
+        PropertyHandler p;
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        ArrayList<Property> found = new ArrayList<>();
+        HashSet<String> s = new HashSet<>();
+        ArrayList<Property> wardList = handler.findPropertiesByWard(ward);
+
+
+        for(int j = 0; j < wardList.size(); j++){
+            for (String c : wardList.get(j).getClasses()){
+                s.add(c);
+            }
+        }
+
+        for (String str : s){
+            p = new PropertyHandler();
+            found = handler.findPropertiesByAssessmentClass(str);
+
+            for(int j = 0; j < found.size(); j++){
+                p.addProperty(found.get(j));
+            }
+            pieData.add(new PieChart.Data(str, p.getNumberOfProperties()));
+        }
+        piechart.setTitle("Number of Properties Per Assessment Class as a Percentage of " + ward);
+        piechart.setData(pieData);
+    }
+    /**
+     * --nbrhdPieData
+     * @purpose function used to set the pie chart display data to the an
+     * observable list of PieChart.Data containing the name and number of 
+     * properties as a percentage of the ward.
+     * 
+     *      function takes the current selected ward and builds an Set of 
+     *      Garage string(Y/N), which is used to build an observable list of 
+     *      PieChart data by creating a propertyhandler where each property
+     *      either has a garage, Y or doesn't, N. This observablelist is used 
+     *      for the data for the piechart.
+     * @author Jason Lee
+     * @since MS3
+     * @version 1.0
+     */
+    public void garagePieData(){
+        PropertyHandler p;
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        ArrayList<Property> found = new ArrayList<>();
+        ArrayList<Property> wardList = handler.findPropertiesByWard(ward);
+
+        HashSet<String> s = new HashSet<>();
+        for(int j = 0; j < wardList.size(); j++){
+            s.add(wardList.get(j).getGarage());
+        }
+
+        for (String str : s){
+            p = new PropertyHandler();
+            found = handler.findPropertiesByGarage(str);
+
+            for(int j = 0; j < found.size(); j++){
+                p.addProperty(found.get(j));
+            }
+            pieData.add(new PieChart.Data(str, p.getNumberOfProperties()));
+        }
+        piechart.setTitle("Number of Properties with versus without a Garage as a Percentage of " + ward);
+        piechart.setData(pieData);
+    }
+    
+   
+    
 }
