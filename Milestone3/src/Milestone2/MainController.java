@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -100,6 +103,24 @@ public class MainController implements Initializable {
     @FXML
     private Label stats;
     private String ward;
+    @FXML
+    private CheckBox accountCheckbox;
+    @FXML
+    private CheckBox addressCheckbox;
+    @FXML
+    private CheckBox assessedValueCheckbox;
+    @FXML
+    private CheckBox assess1Checkbox;
+    @FXML
+    private CheckBox assess2Checkbox;
+    @FXML
+    private CheckBox assess3Checkbox;
+    @FXML
+    private CheckBox neighbourhoodCheckbox;
+    @FXML
+    private CheckBox latCheckbox;
+    @FXML
+    private CheckBox longCheckbox;
     
     
     
@@ -136,10 +157,30 @@ public class MainController implements Initializable {
         
         
         stats.setVisible(false);
+        initColumnVisibility();
         
     }
-
-    
+    /**
+     * --initColumnVisibility
+     * @purpose To set the tableview column visibility intially as well as
+     *  to initially set the associated checkboxes
+     * @author Korey Sniezek
+     * @since MS3
+     * @version 1.0
+     * 
+     * 
+     */
+    private void initColumnVisibility(){
+        setCheckboxListeners();
+        
+        // listeners will change visibility when status is set
+        accountCheckbox.setSelected(true);
+        addressCheckbox.setSelected(true);
+        assess1Checkbox.setSelected(true);
+        assessedValueCheckbox.setSelected(true);
+        neighbourhoodCheckbox.setSelected(true);
+        
+    }
     /**
      * --initAssessmentClasses
      * @purpose helper function to initialize for setting the comboBox items
@@ -290,6 +331,7 @@ public class MainController implements Initializable {
      * @since MS3
      * @version 1.0
      */
+    @FXML
     public void wardSelectBtnHandler() {
         ward = wardSelect.getValue().toString();
         pieChartTab.setDisable(false);
@@ -353,6 +395,7 @@ public class MainController implements Initializable {
      * @since MS3
      * @version 1.0
      */
+    @FXML
     public void pChartSelect(){
         String choice = pChartSelect.getValue().toString();
         switch(choice){
@@ -501,7 +544,162 @@ public class MainController implements Initializable {
         piechart.setTitle("Number of Properties with versus without a Garage as a Percentage of " + ward);
         piechart.setData(pieData);
     }
-    
-   
-    
+    /**
+     * --setCheckboxListeners
+     * @purpose To initialize the column visibility checkbox listeners
+     * @author  Korey Sniezek
+     * @since MS3
+     * @version 1.0
+     * Note: This was adapted from https://stackoverflow.com/questions/22882791/javafx-check-if-a-checkbox-is-ticked
+     */
+    private void setCheckboxListeners(){
+        
+        // Set account checkbox
+        accountCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                accountCol.setVisible(true);
+
+            }else{
+
+                accountCol.setVisible(false);
+            }
+        }
+        
+        
+    });
+        
+        // Set address checkbox
+        addressCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                addressCol.setVisible(true);
+
+            }else{
+
+                addressCol.setVisible(false);
+            }
+        }
+        
+        
+    });
+        
+        // set assessed value checkbox
+        assessedValueCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                assessedCol.setVisible(true);
+
+            }else{
+
+                assessedCol.setVisible(false);
+            }
+        }
+        
+        
+    });
+        
+        // set assessment class 1
+        assess1Checkbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                assClassCol.setVisible(true);
+
+            }else{
+
+                assClassCol.setVisible(false);
+            }
+        }
+    });
+        
+        // set assessment class 2
+        assess2Checkbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                assClassCol2.setVisible(true);
+
+            }else{
+
+                assClassCol2.setVisible(false);
+            }
+        }
+    });
+        
+        // set assessment class 3
+        assess3Checkbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                assClassCol3.setVisible(true);
+
+            }else{
+
+                assClassCol3.setVisible(false);
+            }
+        }
+    });
+        
+        // set neighbourhood listener
+        neighbourhoodCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                nCol.setVisible(true);
+
+            }else{
+
+                nCol.setVisible(false);
+            }
+        }
+    });
+        // set latitude listener
+        latCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                latCol.setVisible(true);
+
+            }else{
+
+                latCol.setVisible(false);
+            }
+        }
+    });
+        // set longitude listener
+        longCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                longCol.setVisible(true);
+
+            }else{
+
+                longCol.setVisible(false);
+            }
+        }
+    });
+    }
 }

@@ -5,10 +5,13 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -16,11 +19,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="618.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
    <children>
       <TabPane fx:id="tab" prefHeight="618.0" prefWidth="930.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -56,6 +60,31 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
                                                 <TextArea id="statisticText" fx:id="statText" editable="false" layoutX="32.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                                <Accordion layoutX="10.0" layoutY="221.0">
+                                                  <panes>
+                                                    <TitledPane animated="false" text="Column Select">
+                                                         <content>
+                                                            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <CheckBox fx:id="addressCheckbox" mnemonicParsing="false" text="Address" AnchorPane.topAnchor="20.0" />
+                                                                        <CheckBox fx:id="accountCheckbox" mnemonicParsing="false" text="Account" />
+                                                                        <CheckBox fx:id="assessedValueCheckbox" mnemonicParsing="false" text="Assessed Value" AnchorPane.topAnchor="40.0" />
+                                                                        <CheckBox fx:id="assess1Checkbox" mnemonicParsing="false" text="Assessment Class 1" AnchorPane.topAnchor="60.0" />
+                                                                        <CheckBox fx:id="assess2Checkbox" mnemonicParsing="false" text="Assessment Class 2" AnchorPane.topAnchor="80.0" />
+                                                                        <CheckBox fx:id="assess3Checkbox" mnemonicParsing="false" text="Assessment Class 3" AnchorPane.topAnchor="100.0" />
+                                                                        <CheckBox fx:id="neighbourhoodCheckbox" mnemonicParsing="false" text="Neighbourhood" AnchorPane.topAnchor="120.0" />
+                                                                        <CheckBox fx:id="latCheckbox" mnemonicParsing="false" text="Latitude" AnchorPane.topAnchor="140.0" />
+                                                                        <CheckBox fx:id="longCheckbox" mnemonicParsing="false" text="Longitude" AnchorPane.topAnchor="160.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </ScrollPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                  </panes>
+                                                </Accordion>
                                              </children>
                                           </AnchorPane>
                                       </items>
@@ -66,15 +95,15 @@
                                  <children>
                                     <TableView fx:id="table" prefHeight="598.4" prefWidth="627.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                                       <columns>
-                                        <TableColumn fx:id="accountCol" prefWidth="100.0" text="Account" />
-                                        <TableColumn fx:id="addressCol" prefWidth="150.0" text="Address" />
-                                        <TableColumn fx:id="assessedCol" prefWidth="100.0" text="Assessed Value" />
-                                        <TableColumn fx:id="assClassCol" prefWidth="150.0" text="Assessment Class 1" />
-                                          <TableColumn fx:id="assClassCol2" prefWidth="150.0" text="Assessment Class 2" />
-                                          <TableColumn fx:id="assClassCol3" prefWidth="150.0" text="Assessment Class 3" />
-                                        <TableColumn fx:id="nCol" minWidth="0.0" prefWidth="200.0" text="Neighbourhood" />
-                                        <TableColumn fx:id="latCol" minWidth="0.0" prefWidth="100.0" text="Latitude" />
-                                        <TableColumn fx:id="longCol" prefWidth="100.0" text="Longitude" />
+                                        <TableColumn fx:id="accountCol" prefWidth="100.0" text="Account" visible="false" />
+                                        <TableColumn fx:id="addressCol" prefWidth="150.0" text="Address" visible="false" />
+                                        <TableColumn fx:id="assessedCol" prefWidth="100.0" text="Assessed Value" visible="false" />
+                                        <TableColumn fx:id="assClassCol" prefWidth="150.0" text="Assessment Class 1" visible="false" />
+                                          <TableColumn fx:id="assClassCol2" prefWidth="150.0" text="Assessment Class 2" visible="false" />
+                                          <TableColumn fx:id="assClassCol3" prefWidth="150.0" text="Assessment Class 3" visible="false" />
+                                        <TableColumn fx:id="nCol" minWidth="0.0" prefWidth="200.0" text="Neighbourhood" visible="false" />
+                                        <TableColumn fx:id="latCol" minWidth="0.0" prefWidth="100.0" text="Latitude" visible="false" />
+                                        <TableColumn fx:id="longCol" prefWidth="100.0" text="Longitude" visible="false" />
                                         
                                       </columns>
                                     </TableView>
