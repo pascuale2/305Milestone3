@@ -12,7 +12,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -21,22 +21,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
    <children>
-      <TabPane fx:id="tab" tabClosingPolicy="UNAVAILABLE">
+
+      <TabPane fx:id="tab" prefHeight="800.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
         <tabs>
           <Tab text="Data">
                <content>
-                  <AnchorPane prefHeight="609.0" prefWidth="1421.0">
+                  <AnchorPane>
                      <children>
-                        <SplitPane dividerPositions="0.22952586206896552" prefHeight="591.0" prefWidth="930.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="578.0" prefWidth="339.0">
+                        <HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" spacing="10.0" styleClass="textPanel" stylesheets="@application.css" HBox.hgrow="NEVER">
                                  <children>
+<!--<<<<<<< HEAD
                                     <SplitPane dividerPositions="0.5" layoutX="53.0" layoutY="92.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -91,11 +96,67 @@
                                           </AnchorPane>
                                       </items>
                                     </SplitPane>
+=======-->
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Find Property Assessment">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number:" />
+                                    <TextField fx:id="accountBox" onAction="#onEnter" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address (#suite #house street):" />
+                                    <TextField fx:id="addressBox" onAction="#onEnter" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Neighbourhood:" />
+                                    <TextField fx:id="neighbourhoodBox" onAction="#onEnter" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assessment Class:" />
+                                    <ComboBox fx:id="assessmentMenu" prefWidth="150.0" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnHandler" text="Search" />
+                                          <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#resetBtnHandler" text="Reset" />
+                                          <Button mnemonicParsing="false" onAction="#findOnMap" text="Find on Map" />
+                                       </children>
+                                    </HBox>
+                                    <Separator />
+                                    <TextArea id="statisticText" fx:id="statText" editable="false" />
+                                    <Accordion>
+                                      <panes>
+                                        <TitledPane animated="false" text="Column Select">
+                                             <content>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                         <children>
+                                                            <CheckBox fx:id="addressCheckbox" mnemonicParsing="false" text="Address" AnchorPane.topAnchor="20.0" />
+                                                            <CheckBox fx:id="accountCheckbox" mnemonicParsing="false" text="Account" />
+                                                            <CheckBox fx:id="assessedValueCheckbox" mnemonicParsing="false" text="Assessed Value" AnchorPane.topAnchor="40.0" />
+                                                            <CheckBox fx:id="assess1Checkbox" mnemonicParsing="false" text="Assessment Class 1" AnchorPane.topAnchor="60.0" />
+                                                            <CheckBox fx:id="assess2Checkbox" mnemonicParsing="false" text="Assessment Class 2" AnchorPane.topAnchor="80.0" />
+                                                            <CheckBox fx:id="assess3Checkbox" mnemonicParsing="false" text="Assessment Class 3" AnchorPane.topAnchor="100.0" />
+                                                            <CheckBox fx:id="neighbourhoodCheckbox" mnemonicParsing="false" text="Neighbourhood" AnchorPane.topAnchor="120.0" />
+                                                            <CheckBox fx:id="latCheckbox" mnemonicParsing="false" text="Latitude" AnchorPane.topAnchor="140.0" />
+                                                            <CheckBox fx:id="longCheckbox" mnemonicParsing="false" text="Longitude" AnchorPane.topAnchor="160.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </ScrollPane>
+                                             </content>
+                                          </TitledPane>
+                                      </panes>
+                                    </Accordion>
+
                                  </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="558.0">
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TableView fx:id="table" prefHeight="598.4" prefWidth="627.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edmonton Property Assessment">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font></Text>
+                                    <TableView fx:id="table" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn fx:id="accountCol" prefWidth="100.0" text="Account" visible="false" />
                                         <TableColumn fx:id="addressCol" prefWidth="150.0" text="Address" visible="false" />
@@ -109,48 +170,78 @@
                                         
                                       </columns>
                                     </TableView>
-                                    <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edmonton Property Assessment" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children>
-                              </AnchorPane>
-                          </items>
-                        </SplitPane>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
           <Tab text="Ward">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane>
                      <children>
-                        <BarChart fx:id="bChart" categoryGap="0.0" legendSide="LEFT" legendVisible="false" prefHeight="539.0" prefWidth="930.0" title="Average Property Value of Each Ward in Edmonton, Alberta">
-                          <xAxis>
-                            <CategoryAxis label="Ward" side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis label="Average Value" side="LEFT" />
-                          </yAxis>
-                        </BarChart>
-                        <ChoiceBox fx:id="wardSelect" layoutX="298.0" layoutY="539.0" prefHeight="25.0" prefWidth="167.0" />
-                      <Button fx:id="seeWard" layoutX="473.0" layoutY="539.0" mnemonicParsing="false" onAction="#wardSelectBtnHandler" prefHeight="25.0" prefWidth="78.0" text="See Ward" />
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BarChart fx:id="bChart" categoryGap="0.0" legendSide="LEFT" legendVisible="false" prefHeight="539.0" prefWidth="930.0" title="Average Property Value of Each Ward in Edmonton, Alberta" VBox.vgrow="ALWAYS">
+                                <xAxis>
+                                  <CategoryAxis label="Ward" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Average Value" side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                              <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <ChoiceBox fx:id="wardSelect" prefHeight="25.0" prefWidth="167.0" />
+                                  <Button fx:id="seeWard" mnemonicParsing="false" onAction="#wardSelectBtnHandler" prefHeight="25.0" prefWidth="78.0" text="See Ward" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab fx:id="pieChartTab" text="Graph">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane>
                      <children>
-                        <PieChart fx:id="piechart" labelLineLength="14.0" legendVisible="false" prefHeight="547.0" prefWidth="930.0" />
-                        <ChoiceBox fx:id="pChartSelect" layoutX="288.0" layoutY="547.0" prefHeight="25.0" prefWidth="173.0" />
-                        <Button fx:id="go" layoutX="469.0" layoutY="547.0" mnemonicParsing="false" onAction="#pChartSelect" prefHeight="25.0" prefWidth="59.0" text="Go" />
-                        <Label fx:id="stats" layoutX="14.0" layoutY="463.0" prefHeight="97.0" prefWidth="272.0" text="Label..." textAlignment="CENTER">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <PieChart fx:id="piechart" labelLineLength="14.0" legendVisible="false" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="stats" prefHeight="97.0" prefWidth="272.0" text="Label..." textAlignment="CENTER" VBox.vgrow="NEVER">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_CENTER" spacing="20.0">
+                                 <children>
+                                    <ChoiceBox fx:id="pChartSelect" prefHeight="25.0" prefWidth="173.0" />
+                                    <Button fx:id="go" mnemonicParsing="false" onAction="#pChartSelect" prefHeight="25.0" prefWidth="59.0" text="Go" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>
@@ -159,7 +250,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <WebView fx:id="Map" minHeight="-1.0" minWidth="-1.0" prefHeight="1500.0" prefWidth="1500.0" />
+                        <WebView fx:id="locationMap" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
                      </children>
                   </AnchorPane>
               </content>

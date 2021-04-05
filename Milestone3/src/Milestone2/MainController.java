@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -41,6 +42,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 
 /**
@@ -125,12 +127,11 @@ public class MainController implements Initializable {
     private CheckBox latCheckbox;
     @FXML
     private CheckBox longCheckbox;
-    @FXML
-    private WebView Map;
-    @FXML
-    private Button findMap;
+
     @FXML
     private Tab location;
+    @FXML
+    private WebView locationMap;
     
     
     
@@ -161,10 +162,10 @@ public class MainController implements Initializable {
         handler = Milestone2.handler;
         resetTable();
         setBChartData();
-//        mapHandler = new MapHandler(Map);
+
+//        initializeMap();
         
-        WebEngine engine = Map.getEngine();
-        engine.load("www.google.ca");
+
         
         initAssessmentClasses(handler);
         initWardSelect();
@@ -729,10 +730,82 @@ public class MainController implements Initializable {
      */
     @FXML
     private void findOnMap(ActionEvent event) {
-        Property property =table.getSelectionModel().getSelectedItem();
+        double latitude;
+        double longitude;
+        String markerString = "";
+        String stageTitle = "Edmonton";
+        String address = "Edmonton";
         
-        mapHandler.findProperty(property.getLat(), property.getLong());
-        
-        tab.getSelectionModel().select(location);
+        Property property = table.getSelectionModel().getSelectedItem();
+        if (property == null){
+            latitude = 53.546186;
+            longitude = -113.528368;
+            
+        }
+        else {
+            latitude = property.getLat();
+            longitude = property.getLong();
+            address = property.getFullAddress();
+            stageTitle = "Account: " + property.getAccount();
+        }
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        URL url = getClass().getResource("google.html");
+
+        webEngine.loadContent("<!DOCTYPE html>\n" +
+"<html>\n" +
+"  <head>\n" +
+"    <title>Simple Map</title>\n" +
+"    <script src=\"https://polyfill.io/v3/polyfill.min.js?features=default\"></script>\n" +
+"    <style type=\"text/css\">\n" +
+"      /* Always set the map height explicitly to define the size of the div\n" +
+"       * element that contains the map. */\n" +
+"      #map {\n" +
+"        height: 100%;\n" +
+"      }\n" +
+"\n" +
+"      /* Optional: Makes the sample page fill the window. */\n" +
+"      html,\n" +
+"      body {\n" +
+"        height: 100%;\n" +
+"        margin: 0;\n" +
+"        padding: 0;\n" +
+"      }\n" +
+"    </style>\n" +
+"    <script>\n" +
+"      let map;\n" +
+"\n" +
+"      function initMap() {\n" +
+"          const myLatLng = { lat: " + latitude + ", lng: " + longitude + " };\n" +
+"          const map = new google.maps.Map(document.getElementById(\"map\"), {\n" +
+"              zoom: 10,\n" +
+"              center: myLatLng,\n" +
+"          });\n" +
+"         new google.maps.Marker({\n" +
+"             position: myLatLng,\n" +
+"             map,\n" +
+"             title: \"" + address + "\",\n" +
+"         });\n" +
+"        \n" +
+"        \n" +
+"      }\n" +
+"    </script>\n" +
+"  </head>\n" +
+"  <body>\n" +
+"    <div id=\"map\"></div>\n" +
+"\n" +
+"    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->\n" +
+"    <script\n" +
+"      src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCL5e1oiJiSx3yOqwia4NgeEqjiprE3_uE&callback=initMap&libraries=&v=weekly\"\n" +
+"      async\n" +
+"    ></script>\n" +
+"  </body>\n" +
+"</html>");
+        Stage locationStage = new Stage();
+        Scene scene = new Scene(webView,600,600);
+        locationStage.setScene(scene);
+        locationStage.setTitle(stageTitle);
+  
+        locationStage.show();
     }
 }
