@@ -39,6 +39,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
 
 /**
  * FXML Controller class
@@ -49,6 +52,7 @@ import javafx.scene.text.FontWeight;
  * @version 1.0
  */
 public class MainController implements Initializable {
+    private MapHandler mapHandler;
     private PropertyHandler handler;
     @FXML
     private TextField addressBox;
@@ -121,6 +125,13 @@ public class MainController implements Initializable {
     private CheckBox latCheckbox;
     @FXML
     private CheckBox longCheckbox;
+    @FXML
+    private WebView Map;
+    @FXML
+    private Button findMap;
+    @FXML
+    private Tab location;
+    
     
     
     
@@ -150,6 +161,10 @@ public class MainController implements Initializable {
         handler = Milestone2.handler;
         resetTable();
         setBChartData();
+//        mapHandler = new MapHandler(Map);
+        
+        WebEngine engine = Map.getEngine();
+        engine.load("www.google.ca");
         
         initAssessmentClasses(handler);
         initWardSelect();
@@ -701,5 +716,23 @@ public class MainController implements Initializable {
             }
         }
     });
+    }
+    
+    /**
+     * --findOnMap
+     * @purpose finds the longitude and latitude of first selected cell
+     *  then finds that location on the map, shows map tab
+     * @author Korey Sniezek   
+     * @version 1.0
+     * @since MS3
+     * @param event 
+     */
+    @FXML
+    private void findOnMap(ActionEvent event) {
+        Property property =table.getSelectionModel().getSelectedItem();
+        
+        mapHandler.findProperty(property.getLat(), property.getLong());
+        
+        tab.getSelectionModel().select(location);
     }
 }
