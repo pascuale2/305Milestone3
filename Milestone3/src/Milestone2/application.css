@@ -19,3 +19,96 @@ and open the template in the editor.
     -fx-background-color: blue;
     -fx-text-fill: white;
 }*/
+
+
+
+/* https://www.materialpalette.com/download.css/grey/blue-grey */
+*{
+    primary-background-color: #212121;
+    secondary-background-color: #424242;
+    selected-btn-color: #BDBDBD;
+    unselected-btn-color: #757575;
+    primary-text-color: #9E9E9E;
+    text-fill-brackground: #616161;
+            
+    
+    /*
+    dark-primary-color: #616161;
+    default-primary-color: #212121;
+    light-primary-color: #F5F5F5;
+    text-primary-color: #212121;
+    accent-color: #607D8B;
+    primary-text-color: #212121;
+    secondary-text-color: #757575;
+    divider-color: #BDBDBD;
+    */
+}
+
+.root {
+    -fx-background-color: primary-background-color;
+}
+
+.button {
+     -fx-background-color: text-fill-brackground;
+     -fx-text-fill: primary-text-color;
+}
+
+/*.VBox
+{
+    -fx-border-style: solid;
+    -fx-border-color: #000000; #b5b5b5;       
+}*/
+
+
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: primary-background-color;
+}
+.tab-pane:top {
+    -fx-background-color: secondary-background-color;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: selected-btn-color;
+}
+.tab-pane .tab:selected .text {
+    
+}
+
+.tab-pane .tab {
+    -fx-background-color: unselected-btn-color;
+}
+
+.text-field {
+    -fx-background-color: text-fill-brackground;
+}
+
+.text-area .content{
+    -fx-background-color: text-fill-brackground;
+    -fx-border-color: primary-background-color;
+    -fx-text-fill: primary-text-color;
+}
+.text-area {
+    -fx-background-color: primary-background-color
+}
+
+.separator *.line {
+    -fx-background-color: primary-background-color;
+    -fx-border-color: primary-background-color;
+}
+
+.combo-box {
+    -fx-background-color: text-fill-brackground;
+    -fx-text-fill: primary-text-color;
+}
+
+.combo-box .list-view {
+    -fx-background-color: text-fill-brackground;
+    -fx-text-fill: primary-text-color;
+}
+
+.textPanel
+{
+    -fx-border-style: solid;
+    -fx-border-color: primary-background-color;
+}
