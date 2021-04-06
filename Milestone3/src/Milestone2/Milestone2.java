@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  * --Milestone2
- * @purpose Implements all changes neede since MS1, including GUI
+ * @purpose Implements all changes needed since MS1, including GUI
  * @author Korey Sniezekj
  * @since MS2
  * @version 1.0
@@ -39,8 +39,8 @@ public class Milestone2 extends Application{
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setTitle("Edmonton Property Assessments");
         primaryStage.setScene(scene);
+        
         primaryStage.show();
-        primaryStage.setMaximized(true);
     }
 
     /**

@@ -13,9 +13,15 @@ and open the template in the editor.
     -fx-background-color: green;
     -fx-text-fill: white;
 }
-
 #labelResult {
     -fx-font-size: 24 px;
     -fx-background-color: blue;
     -fx-text-fill: white;
 }*/
+
+.textPanel
+{
+    -fx-border-style: solid;
+    -fx-border-color: #b5b5b5;
+}
+
