@@ -6,6 +6,8 @@
 package Milestone2;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,10 +54,14 @@ public class Milestone2 extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        // initialize property handler
-        handler = new PropertyHandler("Property_Assessment_Data.csv");
-        
+        Boolean readFromUrl = true;
+        try {
+            // initialize property handler
+            //handler = new PropertyHandler("Property_Assessment_Data.csv", !readFromUrl);
+            handler = new PropertyHandler("https://data.edmonton.ca/api/views/q7d6-ambg/rows.csv?accessType=DOWNLOAD&api_foundry=true", readFromUrl);
+        } catch (IOException ex) {
+            Logger.getLogger(Milestone2.class.getName()).log(Level.SEVERE, null, ex);
+        }
         launch(args);
     }
     

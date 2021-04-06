@@ -5,13 +5,22 @@
  */
 package Milestone2;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -27,6 +36,7 @@ import javafx.collections.ObservableList;
 public class PropertyHandler {
     protected ObservableList <Property> properties = FXCollections.observableArrayList();
     protected Scanner scan;
+    protected BufferedReader br;
     /**
      * Default constructor takes no arguments, will prompt the user for
      * A CSV file name and will attempt to load the file as an ArrayList of
@@ -47,34 +57,35 @@ public class PropertyHandler {
     }
     
     /**
-     * @purpose New constructor added as part of milestone 2 to handle
+     * @purpose New constructor added as part of milestone 3 to handle
      *    default initialization without user prompt for the GUI
      *    this constructor is essentially the "loadPropertyFromFile" method
-     *    without user input
+     *    without user input but now it can take a file URL as well
      * 
-     * @author Korey Sniezek
-     * @since MS2
-     * @version 2.0
-     * @param fileName 
+     * @author Korey Sniezek, Erwin Pascual
+     * @since MS3
+     * @version 3.0
+     * @param fileString
+     * @param loadFromURL
      */
-    public PropertyHandler(String fileName) {
+    public PropertyHandler(String fileString, Boolean loadFromUrl) throws IOException {
         String raw;
-        
         try{
-            scan = new Scanner(new File(fileName));
+            if (loadFromUrl){
+                InputStream input = new URL(fileString).openStream();
+                Reader reader = new InputStreamReader(input, "UTF-8");
+                br = new BufferedReader(reader);
+            }
+            else{
+                br = new BufferedReader(new FileReader(fileString));
+            }
         }
         catch(Exception e){
-            System.out.println("File not found.");
-            return;                    
+            System.out.println("File OR URL not found.");
+            return;
         }
-        
-        scan.useDelimiter(","); //May be extraneous, check later
-        scan.nextLine();
-        
-        while (scan.hasNext()) {
-            
-            raw = scan.nextLine();
-            
+        br.readLine();
+        while ((raw = br.readLine())!= null) {
             // Try to create with line, announce bad data and display if fail
             try{
                 properties.add(new Property(raw));
@@ -83,11 +94,8 @@ public class PropertyHandler {
                 System.out.println("Bad line of data:");
                 System.out.println(raw);
             }
-            
-            
         }
-        
-        scan.close();
+        br.close();
     }
     
     /**

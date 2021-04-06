@@ -6,12 +6,14 @@
 package Milestone2;
 
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -54,7 +56,7 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class MainController implements Initializable {
-    private MapHandler mapHandler;
+    //private MapHandler mapHandler;
     private PropertyHandler handler;
     @FXML
     private TextField addressBox;
@@ -77,7 +79,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Property, String> addressCol;
     @FXML
-    private TableColumn<Property, Integer> assessedCol;
+    private TableColumn<Property, String> assessedCol;
     @FXML
     private TableColumn<Property, String> assClassCol;
     @FXML
@@ -258,7 +260,12 @@ public class MainController implements Initializable {
     private void resetTable() {
         accountCol.setCellValueFactory(new PropertyValueFactory<>("Account"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("FullAddress"));
-        assessedCol.setCellValueFactory(new PropertyValueFactory<>("Value"));
+        assessedCol.setCellValueFactory(data -> {
+            NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            formatter.setMaximumFractionDigits(0);
+            String formattedValue = formatter.format(data.getValue().getValue());
+            return new SimpleStringProperty(formattedValue);
+        });
         assClassCol.setCellValueFactory(new PropertyValueFactory<>("Class1"));
         assClassCol2.setCellValueFactory(new PropertyValueFactory<>("Class2"));
         assClassCol3.setCellValueFactory(new PropertyValueFactory<>("Class3"));
