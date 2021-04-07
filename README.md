@@ -18,5 +18,5 @@ Instructions to run:
         javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-
         UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED
 
-  To enable loading from URL, uncomment the line shown below, and comment out the line below it
+  To disable loading from URL, uncomment the line shown below, and comment out the line below it
     ![image](https://user-images.githubusercontent.com/46851615/113911674-7a247e80-9797-11eb-87f4-3a8b4551b319.png)
