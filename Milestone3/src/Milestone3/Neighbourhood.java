@@ -8,7 +8,8 @@ package Milestone3;
 import javafx.collections.ObservableList;
 
 /**
- * Neighbourhood extends PropertyHandler, it is essentially the same as 
+ * --Neighbourhood 
+ * @purpose extends PropertyHandler, it is essentially the same as 
  *  property handler, except that it filters all but properties that
  *  match the neighbourhood input string
  * @author Korey Sniezek
@@ -18,7 +19,8 @@ import javafx.collections.ObservableList;
 public class Neighbourhood extends PropertyHandler {
     private String neighbourhoodName;
     /**
-     * Neighbourhood constructor takes a PropertyHandler and a string, it 
+     * --Neighbourhood
+     * @purpose Neighbourhood constructor takes a PropertyHandler and a string, it 
      *  creates a new PropertyHandler containing only properties in that
      *  neighbourhood
      *      Version 2.0 updated allProperties to be an ObservabeList
@@ -49,7 +51,8 @@ public class Neighbourhood extends PropertyHandler {
     }
     
     /**
-     * The purpose of this method is to get the name of the neighbourhood
+     * --getName
+     * @purpose The purpose of this method is to get the name of the neighbourhood
      * @author Korey Sniezek
      * @version 1.0
      * @since MS1

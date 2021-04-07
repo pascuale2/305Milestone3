@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * This class represents an individual property, and will have all of the 
+ * --Property
+ * @purpose This class represents an individual property, and will have all of the 
  * associated values attached with methods to retrieve each field. Assumes a 
  * valid input format
  * 
@@ -39,8 +40,9 @@ public class Property implements Comparable<Property>{
     private String assessClass3;
     
     /**
-     * This constructor takes a whole line of properly formatted data (csv with
-     * proper fields) and seperates it, checks it, parses it, and puts it
+     * --Property
+     * @purpose This constructor takes a whole line of properly formatted data (csv with
+     * proper fields) and separates it, checks it, parses it, and puts it
      * into its proper fields
      * 
      * @author Korey Sniezek (KMS)
@@ -99,8 +101,9 @@ public class Property implements Comparable<Property>{
     
     
     /**
-     * getAccount -- returns the internal account number
+     * --getAccount 
      * 
+     * @purpose returns the internal account number
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return int accountNumber
@@ -113,8 +116,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getSuite -- returns the gets the associated suite string
+     * --getSuite 
      * 
+     * @returns the gets the associated suite string
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String suite
@@ -126,8 +130,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getHouseName -- returns the a String representation of the house name
+     * --getHouseName 
      * 
+     * @purpose returns the a String representation of the house name
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String houseName
@@ -140,8 +145,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getStreet -- returns a string representation of the street
+     * --getStreet 
      * 
+     * @purpose returns a string representation of the street
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String street
@@ -154,8 +160,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getGarage -- returns a string, Y or N, if it has a garage or not
+     * getGarage 
      * 
+     * @purpose returns a string, Y or N, if it has a garage or not
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String Garage
@@ -167,8 +174,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getNID -- returns an integer representation of the neighbourhood ID
+     * --getNID 
      * 
+     * @purpose returns an integer representation of the neighbourhood ID
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return int neighbourhoodID
@@ -180,8 +188,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getN -- returns a string representation of the neighbourhood
+     * --getN 
      * 
+     * @purpose returns a string representation of the neighbourhood
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String neighbourhood
@@ -192,7 +201,9 @@ public class Property implements Comparable<Property>{
         return neighbourhood;
     }
     /**
-     * getClasses -- returns a string list of classes for this property
+     * --getClasses 
+     * 
+     * @purpose returns a string list of classes for this property
      * @author Korey Sniezek
      * @return ArrayList String classes
      * @version 1.0
@@ -211,8 +222,9 @@ public class Property implements Comparable<Property>{
         return temp;
     }
     /**
-     * getWard -- returns a string representation of the ward
+     * --getWard 
      * 
+     * @purpose returns a string representation of the ward
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String Ward
@@ -224,8 +236,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getValue -- returns a integer representation of the value
+     * --getValue
      * 
+     * @purpose returns a integer representation of the value
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return int value
@@ -237,8 +250,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getLong -- returns a double represntation of the longitude
+     * --getLong
      * 
+     * @purpose returns a double representation of the longitude
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return double longitude
@@ -250,8 +264,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getLat -- returns a double representation of the latitude
+     * --getLat 
      * 
+     * @purpose returns a double representation of the latitude
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return double latitude
@@ -263,10 +278,10 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getFullAddress -- returns a string representation of the full address
-     * 
+     * --getFullAddress 
      *  #2021-03-22 KMS added conditional to remove extra space when parsing
      * 
+     * @purpose returns a string representation of the full address
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String full address
@@ -286,9 +301,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getClass1 -- returns a string representation of the first assesment 
-     *  class
+     * --getClass1 
      * 
+     * @purpose returns a string representation of the first assessment class
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String assessClass1
@@ -300,9 +315,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getClass1 -- returns a string representation of the second assesment 
-     *  class
+     * --getClass1 
      * 
+     * @purpose returns a string representation of the second assessment class
      * @author Korey Sniezek (KMS)
      * @version 1.0
      * @return String assessClass1
@@ -314,9 +329,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getClass3 -- returns a string representation of the third assesment 
-     *  class
+     * --getClass3 
      * 
+     * @purpose returns a string representation of the third assessment class
      * @author Korey Sniezek (KMS)
      * @version 1.0
      * @return String assessClass3
@@ -329,9 +344,10 @@ public class Property implements Comparable<Property>{
     
     
     /**
-     * getNeiPlusWard -- returns a string representation of the neighbourhood
-     *  plus the ward
+     * --getNeiPlusWard
      * 
+     * @purpose returns a string representation of the neighbourhood plus the 
+     *  ward
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String neighbourhood + ward
@@ -344,8 +360,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * getPoint -- returns a string representation of the coordinates
+     * --getPoint 
      * 
+     * @purpose returns a string representation of the coordinates
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return String point 
@@ -358,8 +375,9 @@ public class Property implements Comparable<Property>{
     }
     
     /**
-     * compareTo -- overrides the compareTo operator to compare by value
+     * --compareTo 
      * 
+     * @purpose overrides the compareTo operator to compare by value
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @param other
@@ -373,8 +391,9 @@ public class Property implements Comparable<Property>{
     }
     
    /**
-     * equals -- returns true if account numbers are equal
+     * --equals 
      * 
+     * @purpose returns true if account numbers are equal     * 
      * @author Korey Sniezek (KMS)
      * @version 2.0
      * @return boolean, true if account numbers match
@@ -401,8 +420,9 @@ public class Property implements Comparable<Property>{
         return false;
     }
     /**
-     * hashCode -- netbeans generated hash function using accountNumber
+     * --hashCode 
      * 
+     * @purpose netbeans generated hash function using accountNumber     * 
      * @author Korey Sniezek (KMS)
      * @version 1.0
      * @return int hash
@@ -416,11 +436,11 @@ public class Property implements Comparable<Property>{
     }
     
         /**
-     * printAccountDetails prints a representation of the account
-     *  with several details
-     * 
+     * --printAccountDetails 
+     *      *      * 
      * #2021-01-28 KMS moved into PropertyHandler and modified
      * 
+     * @purpose prints a representation of the account with several details
      * @author Korey Sniezek (KMS)
      * @version 2.1
      * @since Lab2 26 January 2021

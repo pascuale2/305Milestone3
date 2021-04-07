@@ -6,7 +6,6 @@
 package Milestone3;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,13 +18,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * This class holds an ArrayList of property objects and implements
+ * --PropertyHandler
+ * @purpose This class holds an ArrayList of property objects and implements
  *  methods to search through the list and provide statistics
  *          Version 2 updated so that properties is an ObservableList
  * @author Korey Sniezek (KMS)
@@ -38,7 +36,8 @@ public class PropertyHandler {
     protected Scanner scan;
     protected BufferedReader br;
     /**
-     * Default constructor takes no arguments, will prompt the user for
+     * --PropertyHandler()
+     * @purpose Default constructor takes no arguments, will prompt the user for
      * A CSV file name and will attempt to load the file as an ArrayList of
      * property objects.
      * 
@@ -57,6 +56,7 @@ public class PropertyHandler {
     }
     
     /**
+     * 
      * @purpose New constructor added as part of milestone 3 to handle
      *    default initialization without user prompt for the GUI
      *    this constructor is essentially the "loadPropertyFromFile" method
@@ -66,7 +66,8 @@ public class PropertyHandler {
      * @since MS3
      * @version 3.0
      * @param fileString
-     * @param loadFromURL
+     * @param loadFromUrl
+     * @throws IOException
      */
     public PropertyHandler(String fileString, Boolean loadFromUrl) throws IOException {
         String raw;
@@ -98,7 +99,9 @@ public class PropertyHandler {
         br.close();
     }
     /**
-     * getNumberOfProperties -- This method returns the number of items in the list of properties
+     * --getNumberOfProperties 
+     * 
+     * @purpose This method returns the number of items in the list of properties
      * 
      *  #2021-01-28 KMS modified to accept an ArrayList of properties
      * 
@@ -117,7 +120,9 @@ public class PropertyHandler {
     }
 
     /**
-     * min -- This method returns the minimum property value of the contained
+     * --min 
+     * 
+     * @purpose This method returns the minimum property value of the contained
      *  property list
      *
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -143,7 +148,9 @@ public class PropertyHandler {
     }
 
     /**
-     * getMax -- This method returns the maximum property value of the internal
+     * --getMax
+     * 
+     * @purpose This method returns the maximum property value of the internal
      *  properties list
      *
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -168,7 +175,9 @@ public class PropertyHandler {
     }
 
     /**
-     * getRange -- This method returns the differenece between the maximum property
+     * --getRange 
+     * 
+     * @purpose This method returns the difference between the maximum property
      *  value and the minimum property value in the internal properties list
      *
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -186,7 +195,9 @@ public class PropertyHandler {
     }
 
     /**
-     * getMean -- This method returns the average value of properties in the
+     * --getMean 
+     * 
+     * @purpose This method returns the average value of properties in the
      *  internal property list
      * 
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -208,7 +219,9 @@ public class PropertyHandler {
     }
 
     /**
-     * getSumList -- This method returns the total sum of all properties in the
+     * --getSumList
+     * 
+     * @purpose This method returns the total sum of all properties in the
      *  internal property list
      *
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -233,7 +246,9 @@ public class PropertyHandler {
     }
 
     /**
-     * getStdev -- This method returns the standard deviation of the values of the
+     * --getStdev 
+     * 
+     * @purpose This method returns the standard deviation of the values of the
      *  internal property list
      *
      * #2021-01-28 KMS modified to accept an ArrayList of properties 
@@ -262,7 +277,9 @@ public class PropertyHandler {
         return Math.sqrt(sumDiffMeanSquared / properties.size());
     }
     /**
-     * getMedian -- This method returns the median value of the internal property
+     * --getMedian 
+     * 
+     * @purpose This method returns the median value of the internal property
      *  list
      * 
      * #2021-01-28 KMS modified to accept an ArrayList of properties
@@ -300,7 +317,9 @@ public class PropertyHandler {
     }
     
     /**
-     * findAccount -- This method takes an account number and returns the 
+     * --findAccount 
+     * 
+     * @purpose This method takes an account number and returns the 
      *  associated Property object from the internal Property list
      *  NOTE: Not a deepCopy
      * 
@@ -326,7 +345,10 @@ public class PropertyHandler {
         return targetAccount;
     }
     /**
-     * getStatString -- return a string of all descriptive stats for all properties
+     * --getStatString 
+     * 
+     * @return 
+     * @purpose return a string of all descriptive stats for all properties
      *  loaded, created instead of modifying printDescriptiveStats
      * 
      * @author Korey Sniezek
@@ -353,7 +375,9 @@ public class PropertyHandler {
     }
     
     /**
-     * getAllProperties -- returns the list of all property objects
+     * --getAllProperties 
+     * 
+     * @purpose returns the list of all property objects
      *      Version 2 edited to return ObservableList
      * @return ArrayList of properties
      * @author Korey Sniezek
@@ -378,7 +402,7 @@ public class PropertyHandler {
     
     /**
      * --findPropertiesByAddress
-     * @purpose To iterate throught the properties and return a list of properties
+     * @purpose To iterate through the properties and return a list of properties
      *    with matching full addresses
      * @author Korey Sniezek
      * @since MS2
@@ -407,12 +431,13 @@ public class PropertyHandler {
      *    however, as they are being treated as "not searched for" when left
      *    empty, properties with those values empty will only appear during
      *    searches with other valid search values.
-     * 
+     * @author Korey Sniezek
+     * @since MS2
      * @param account
      * @param address
      * @param neigh
      * @param assess
-     * @return 
+     * @return ArrayList of properties
      */
     public ArrayList<Property> findPropertiesBySearchFields(String account, String address, String neigh, String assess){
         ArrayList<Property> propertiesToReturn = new ArrayList();
@@ -450,8 +475,8 @@ public class PropertyHandler {
      * @purpose This returns a list of properties that match the ward param. It
      * takes the ward, and searches through all the properties, adding each
      * Property that matches the argument to a new ArrayList to be returned.
-     *    
-     * 
+     * @author Jason Lee
+     * @since MS3
      * @param ward
      * @return propertiesFound - list of Properties that match the param
      */
@@ -469,8 +494,8 @@ public class PropertyHandler {
      * @purpose This returns a list of properties that match the nbrhd param. It
      * takes the ward, and searches through all the properties, adding each
      * Property that matches the argument to a new ArrayList to be returned.
-     *    
-     * 
+     * @since MS3
+     * @author Jason Lee   
      * @param nbrhd
      * @return propertiesFound - list of Properties that match the param
      */
@@ -488,8 +513,8 @@ public class PropertyHandler {
      * @purpose This returns a list of properties that match the aClass param. It
      * takes the ward, and searches through all the properties, adding each
      * Property that matches the argument to a new ArrayList to be returned.
-     *    
-     * 
+     * @since MS3
+     * @author Jason Lee
      * @param aClass
      * @return propertiesFound - list of Properties that match the param
      */
@@ -509,8 +534,8 @@ public class PropertyHandler {
      * @purpose This returns a list of properties that match the g param. It
      * takes the ward, and searches through all the properties, adding each
      * Property that matches the argument to a new ArrayList to be returned.
-     *    
-     * 
+     * @since MS3   
+     * @author Jason Lee
      * @param g - Garage indicator (Y/N)
      * @return propertiesFound - list of Properties that match the param
      */

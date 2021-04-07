@@ -36,7 +36,7 @@ public class Milestone3 extends Application{
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Demo.fxml"));
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setTitle("Edmonton Property Assessments");
@@ -50,13 +50,13 @@ public class Milestone3 extends Application{
      * @purpose main program
      * @author Korey Sniezek
      * @since MS2
-     * @version 1.0
+     * @version 2.0
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Boolean readFromUrl = true;
         try {
-            // initialize property handler
+            // comment out line 60 and uncomment 61 to load from database
             handler = new PropertyHandler("Property_Assessment_Data.csv", !readFromUrl);
             //handler = new PropertyHandler("https://data.edmonton.ca/api/views/q7d6-ambg/rows.csv?accessType=DOWNLOAD&api_foundry=true", readFromUrl);
         } catch (IOException ex) {

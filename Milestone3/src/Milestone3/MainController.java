@@ -8,11 +8,9 @@ package Milestone3;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,8 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Series;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -41,8 +37,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -67,10 +61,6 @@ public class MainController implements Initializable {
     private TextField accountBox;
     @FXML
     private ComboBox<String> assessmentMenu;
-    @FXML
-    private Button searchBtn;
-    @FXML
-    private Button resetBtn;
     @FXML
     private TextArea statText;
     @FXML
@@ -102,10 +92,6 @@ public class MainController implements Initializable {
     @FXML
     private ChoiceBox pChartSelect;
     @FXML
-    private Button seeWard;
-    @FXML
-    private Button go;
-    @FXML
     private TabPane tab;
     @FXML
     private Tab pieChartTab;
@@ -133,7 +119,7 @@ public class MainController implements Initializable {
 
 
     @FXML
-    private TableColumn<?, ?> wardCol;
+    private TableColumn<Property, String> wardCol;
 
     @FXML
     private CheckBox wardCheckbox;
@@ -167,15 +153,10 @@ public class MainController implements Initializable {
         handler = Milestone3.handler;
         resetTable();
         setBChartData();
-
-//        initializeMap();
-        
-
         
         initAssessmentClasses(handler);
         initWardSelect();
         pieChartTab.setDisable(true);
-        
         
         stats.setVisible(false);
         initColumnVisibility();
@@ -183,12 +164,11 @@ public class MainController implements Initializable {
     }
     /**
      * --initColumnVisibility
-     * @purpose To set the tableview column visibility intially as well as
-     *  to initially set the associated checkboxes
+     * @purpose To set the tableView column visibility initially as well as
+     *  to initially set the associated checkBoxes
      * @author Korey Sniezek
      * @since MS3
      * @version 1.0
-     * 
      * 
      */
     private void initColumnVisibility(){
@@ -261,8 +241,11 @@ public class MainController implements Initializable {
      * @version 1.0
      */
     private void resetTable() {
+        
+        // create factories
         accountCol.setCellValueFactory(new PropertyValueFactory<>("Account"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("FullAddress"));
+        // format value as currency
         assessedCol.setCellValueFactory(data -> {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             formatter.setMaximumFractionDigits(0);
@@ -276,9 +259,9 @@ public class MainController implements Initializable {
         latCol.setCellValueFactory(new PropertyValueFactory<>("Lat"));
         longCol.setCellValueFactory(new PropertyValueFactory<>("Long"));
         wardCol.setCellValueFactory(new PropertyValueFactory<>("Ward"));
+        // end factories
+        
         statText.setText(handler.getStatString());
-        // placeholder value
-//        table.setPlaceholder(new Label("No properties to display"));
         table.setItems((ObservableList<Property>) handler.getAllProperties());
         
     }
@@ -460,25 +443,27 @@ public class MainController implements Initializable {
      * 
      *      function takes the current selected ward and builds an Set of 
      *      neighbourhoods, which is used to build an observable list of 
-     *      PieChart data by creating a propertyhandler where each property
-     *      is within the neighbourhood. This observablelist is used for the 
+     *      PieChart data by creating a propertyHandler where each property
+     *      is within the neighbourhood. This observabList is used for the 
      *      data for the piechart.
      * @author Jason Lee
      * @since MS3
      * @version 1.0
      */
     public void nbrhdPieData(){
+        // init values
         PropertyHandler p;
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
         ArrayList<Property> found = new ArrayList<>();
         HashSet<String> s = new HashSet<>();
         ArrayList<Property> wardList = handler.findPropertiesByWard(ward);
 
-
+        // add wards to hashset
         for(int j = 0; j < wardList.size(); j++){
             s.add(wardList.get(j).getNeighbourhood());
         }
-
+        
+        // process neighbourhoods
         for (String str : s){
             p = new PropertyHandler();
             found = handler.findPropertiesByNeighbourhood(str);
@@ -488,6 +473,8 @@ public class MainController implements Initializable {
             }
             pieData.add(new PieChart.Data(str, p.getNumberOfProperties()));
         }
+        
+        // set data
         piechart.setTitle("Number of Properties Per Neighbourhood as a Percentage of " + ward);
         piechart.setData(pieData);
     }
@@ -507,13 +494,14 @@ public class MainController implements Initializable {
      * @version 1.0
      */
     public void aClassPieData(){
+        // init
         PropertyHandler p;
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
         ArrayList<Property> found = new ArrayList<>();
         HashSet<String> s = new HashSet<>();
         ArrayList<Property> wardList = handler.findPropertiesByWard(ward);
 
-
+        
         for(int j = 0; j < wardList.size(); j++){
             for (String c : wardList.get(j).getClasses()){
                 s.add(c);
@@ -584,7 +572,7 @@ public class MainController implements Initializable {
         accountCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
              @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            // TODO Auto-generated method stub
+            
             if(newValue){
 
                 accountCol.setVisible(true);
@@ -594,8 +582,6 @@ public class MainController implements Initializable {
                 accountCol.setVisible(false);
             }
         }
-        
-        
     });
         
         // Set address checkbox
@@ -612,8 +598,6 @@ public class MainController implements Initializable {
                 addressCol.setVisible(false);
             }
         }
-        
-        
     });
         
         // set assessed value checkbox
@@ -630,8 +614,6 @@ public class MainController implements Initializable {
                 assessedCol.setVisible(false);
             }
         }
-        
-        
     });
         
         // set assessment class 1
@@ -748,6 +730,7 @@ public class MainController implements Initializable {
      * --findOnMap
      * @purpose finds the longitude and latitude of first selected cell
      *  then finds that location on the map, shows map tab
+     *  Note: is marked as never used in code, but is called by the view.
      * @author Korey Sniezek   
      * @version 1.0
      * @since MS3
@@ -757,11 +740,12 @@ public class MainController implements Initializable {
     private void findOnMap(ActionEvent event) {
         double latitude;
         double longitude;
-        String markerString = "";
+        
         String stageTitle = "Edmonton";
         String address = "Edmonton";
         
         Property property = table.getSelectionModel().getSelectedItem();
+        
         if (property == null){
             latitude = 53.546186;
             longitude = -113.528368;
@@ -775,8 +759,8 @@ public class MainController implements Initializable {
         }
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        URL url = getClass().getResource("google.html");
-
+        
+        // load HTML embedded javascript to call google maps API
         webEngine.loadContent("<!DOCTYPE html>\n" +
 "<html>\n" +
 "  <head>\n" +
@@ -826,6 +810,8 @@ public class MainController implements Initializable {
 "    ></script>\n" +
 "  </body>\n" +
 "</html>");
+        
+        // set popup map
         Stage locationStage = new Stage();
         Scene scene = new Scene(webView,600,600);
         locationStage.setScene(scene);
