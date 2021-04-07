@@ -170,4 +170,8 @@
     -fx-background-color: #2C2F33;
     -fx-border-color: #23272A;
     -fx-font-family: sans-serif;
+    
+}
+.table-row-cell:selected{
+    -fx-background-color: #000000;
 }

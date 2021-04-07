@@ -105,20 +105,6 @@
     -fx-border-color: primary-background-color;
 }
 
-.chart-title {
-    -fx-text-fill: primary-text-color;
-}
-
-.axis-label {
-    -fx-text-fill: primary-text-color;
-}
-.chart-pie-label {
-    -fx-fill: primary-text-color;
-}
-.chart-pie-label {
-    -fx-fill: primary-text-color;
-}
-
 /*----------COMBOBOX STYLING----------*/
 .combo-box {
     -fx-background-color: text-fill-brackground;
@@ -170,4 +156,23 @@
     -fx-background-color: #2C2F33;
     -fx-border-color: #23272A;
     -fx-font-family: sans-serif;
+    
+}
+.table-row-cell:selected{
+    -fx-background-color: #000000;
+}
+
+/*----------CHART STYLING----------*/
+.chart-title {
+    -fx-text-fill: primary-text-color;
+}
+
+.axis-label {
+    -fx-text-fill: primary-text-color;
+}
+.chart-pie-label {
+    -fx-fill: primary-text-color;
+}
+.chart-pie-label {
+    -fx-fill: primary-text-color;
 }
