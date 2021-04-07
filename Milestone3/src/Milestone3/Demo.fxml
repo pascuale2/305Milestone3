@@ -25,9 +25,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone2.MainController">
+<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone3.MainController">
    <children>
 
       <TabPane fx:id="tab" prefHeight="852.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -249,10 +248,10 @@
                            <children>
                               <BarChart fx:id="bChart" categoryGap="0.0" legendSide="LEFT" legendVisible="false" prefHeight="539.0" prefWidth="930.0" title="Average Property Value of Each Ward in Edmonton, Alberta" VBox.vgrow="ALWAYS">
                                 <xAxis>
-                                  <CategoryAxis label="Ward" side="BOTTOM" />
+                                  <CategoryAxis label="Ward" side="BOTTOM" tickLabelFill="WHITE" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis label="Average Value" side="LEFT" />
+                                  <NumberAxis label="Average Value" side="LEFT" tickLabelFill="WHITE" />
                                 </yAxis>
                               </BarChart>
                               <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
@@ -280,7 +279,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <PieChart fx:id="piechart" labelLineLength="14.0" legendVisible="false" VBox.vgrow="ALWAYS" />
-                              <Label fx:id="stats" prefHeight="97.0" prefWidth="272.0" text="Label..." textAlignment="CENTER" VBox.vgrow="NEVER">
+                              <Label fx:id="stats" prefHeight="97.0" prefWidth="272.0" text="Label..." textAlignment="CENTER" textFill="#9e9e9e" VBox.vgrow="NEVER">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -305,15 +304,6 @@
                      </children>
                   </AnchorPane>
                </content>
-            </Tab>
-            <Tab fx:id="location" text="Location">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <WebView fx:id="locationMap" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
             </Tab>
         </tabs>
       </TabPane>

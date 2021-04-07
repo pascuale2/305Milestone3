@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Milestone2;
+package Milestone3;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,13 +15,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * --Milestone2
+ * --Milestone3
  * @purpose Implements all changes needed since MS1, including GUI
  * @author Korey Sniezekj
  * @since MS2
  * @version 1.0
  */
-public class Milestone2 extends Application{
+public class Milestone3 extends Application{
     public static PropertyHandler handler;
     
     /**
@@ -60,7 +60,7 @@ public class Milestone2 extends Application{
             //handler = new PropertyHandler("Property_Assessment_Data.csv", !readFromUrl);
             handler = new PropertyHandler("https://data.edmonton.ca/api/views/q7d6-ambg/rows.csv?accessType=DOWNLOAD&api_foundry=true", readFromUrl);
         } catch (IOException ex) {
-            Logger.getLogger(Milestone2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Milestone3.class.getName()).log(Level.SEVERE, null, ex);
         }
         launch(args);
     }
