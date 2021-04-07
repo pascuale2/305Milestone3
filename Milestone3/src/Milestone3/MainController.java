@@ -27,6 +27,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -130,10 +131,12 @@ public class MainController implements Initializable {
     @FXML
     private CheckBox longCheckbox;
 
+
     @FXML
-    private Tab location;
+    private TableColumn<?, ?> wardCol;
+
     @FXML
-    private WebView locationMap;
+    private CheckBox wardCheckbox;
     
     
     
@@ -272,7 +275,7 @@ public class MainController implements Initializable {
         nCol.setCellValueFactory(new PropertyValueFactory<>("Neighbourhood"));
         latCol.setCellValueFactory(new PropertyValueFactory<>("Lat"));
         longCol.setCellValueFactory(new PropertyValueFactory<>("Long"));
-        
+        wardCol.setCellValueFactory(new PropertyValueFactory<>("Ward"));
         statText.setText(handler.getStatString());
         // placeholder value
 //        table.setPlaceholder(new Label("No properties to display"));
@@ -721,6 +724,21 @@ public class MainController implements Initializable {
             }else{
 
                 longCol.setVisible(false);
+            }
+        }
+    });
+        // set ward listener
+        wardCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>(){
+             @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            // TODO Auto-generated method stub
+            if(newValue){
+
+                wardCol.setVisible(true);
+
+            }else{
+
+                wardCol.setVisible(false);
             }
         }
     });

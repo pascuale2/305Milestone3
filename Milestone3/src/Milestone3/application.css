@@ -1,18 +1,8 @@
 /* 
     Created on : Mar. 13, 2021, 3:50:17 p.m.
-    Author     : Korey
+    Authors     : Laroy and Erwin
 */
 
-/*#btnGenerate {
-    -fx-font-size: 19px;
-    -fx-background-color: green;
-    -fx-text-fill: white;
-}
-#labelResult {
-    -fx-font-size: 24 px;
-    -fx-background-color: blue;
-    -fx-text-fill: white;
-}*/
 
 /* https://www.materialpalette.com/download.css/grey/blue-grey */
 *{
@@ -93,7 +83,9 @@
 .text-area {
     -fx-text-fill: text-field-heading;
     -fx-background-color: primary-background-color;
+   
 }
+
 
 .textPanel {
     -fx-border-style: solid;

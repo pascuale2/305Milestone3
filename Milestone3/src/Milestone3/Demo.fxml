@@ -26,7 +26,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone3.MainController">
+<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone3.MainController">
    <children>
 
       <TabPane fx:id="tab" prefHeight="852.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -148,7 +148,7 @@
                                              <content>
                                                 <ScrollPane id="tiltedScrollPane" prefHeight="209.0" prefWidth="232.0">
                                                   <content>
-                                                    <AnchorPane id="tiltedPaneContent" minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="230.0">
+                                                    <AnchorPane id="tiltedPaneContent" minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="230.0">
                                                          <children>
                                                             <CheckBox fx:id="accountCheckbox" contentDisplay="CENTER" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" text="Account" textFill="#ededed">
                                                                <font>
@@ -195,6 +195,11 @@
                                                                   <Font name="SansSerif Regular" size="14.0" />
                                                                </font>
                                                             </CheckBox>
+                                                            <CheckBox fx:id="wardCheckbox" layoutX="14.0" mnemonicParsing="false" text="Ward" textFill="#ededed" AnchorPane.topAnchor="230.0">
+                                                               <font>
+                                                                  <Font name="SansSerif Regular" size="14.0" />
+                                                               </font>
+                                                            </CheckBox>
                                                          </children>
                                                       </AnchorPane>
                                                   </content>
@@ -226,6 +231,7 @@
                                         <TableColumn fx:id="nCol" minWidth="0.0" prefWidth="200.0" text="Neighbourhood" visible="false" />
                                         <TableColumn fx:id="latCol" minWidth="0.0" prefWidth="100.0" text="Latitude" visible="false" />
                                         <TableColumn fx:id="longCol" prefWidth="100.0" text="Longitude" visible="false" />
+                                          <TableColumn fx:id="wardCol" prefWidth="75.0" text="Ward" visible="false" />
                                         
                                       </columns>
                                     </TableView>
