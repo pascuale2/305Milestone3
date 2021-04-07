@@ -27,7 +27,7 @@
 /*----------BUTTON STYLING----------*/
 .button {
     -fx-background-color: orange-primary-color;
-    -fx-text-fill: text-white;
+    -fx-text-fill: button-hover-color;
 }
 
 .button:hover{
@@ -36,8 +36,8 @@
 }
 
 .button:pressed{
-    -fx-background-color: light-primary-color;
-    -fx-text-fill: dark-primary-color;
+    -fx-background-color: selected-btn-color;
+    -fx-text-fill: black;
 }
 
 /*----------TAB STYLING----------*/
@@ -73,17 +73,22 @@
 /*----------TEXT FIELD/AREA STYLING----------*/
 .text-field {
     -fx-background-color: text-fill-brackground;
+    -fx-highlight-fill: orange-primary-color;
+    -fx-highlight-text-fill: black;
+    -fx-text-inner-color: white;
 }
 
 .text-area .content{
     -fx-background-color: text-fill-brackground;
     -fx-border-color: primary-background-color;
     -fx-text-fill: primary-text-color;
+    
 }
 .text-area {
     -fx-text-fill: text-field-heading;
     -fx-background-color: primary-background-color;
-   
+    -fx-highlight-fill: orange-primary-color;
+    -fx-highlight-text-fill: black; 
 }
 
 
@@ -100,6 +105,10 @@
 /*----------COMBOBOX/CHOICEBOX STYLING----------*/
 .combo-box {
     -fx-background-color: text-fill-brackground;
+    -fx-text-fill: text-white;
+}
+
+.combo-box .list-cell {
     -fx-text-fill: text-white;
 }
 
@@ -131,6 +140,13 @@
     -fx-text-fill: text-white;
 }
 
+.titled-pane .scroll-bar {
+    -fx-background-color: primary-background-color;
+}
+.titled-pane .scroll-bar .thumb {
+    -fx-background-color: orange-primary-color;
+}
+
 #tiltedScrollPane{
     -fx-border-color: primary-background-color;
 }
@@ -148,6 +164,9 @@
     -fx-border-color: transparent;
     -fx-text-fill: #AAAAAA;
 }
+.table-column:hover {
+    -fx-border-color: orange-primary-color;
+}
 
 .table-row-cell{
     -fx-background-color: #2C2F33;
@@ -158,6 +177,42 @@
 .table-row-cell:selected{
     -fx-background-color: #000000;
 }
+
+.table-view {
+    -fx-border-color: primary-background-color;
+    -fx-background-color: transparent;
+}
+.table-view .column-header:hover .label {
+    -fx-text-fill: black;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-border-color: black;
+    -fx-background-color: secondary-background-color;
+    -fx-border-width: .1
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: secondary-background-color;
+}
+
+.table-view .column-header:hover{
+    -fx-background-color: orange-primary-color;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: primary-background-color
+}
+.table-view .scroll-bar {
+    -fx-background-color: primary-background-color;
+}
+.table-view .scroll-bar .thumb {
+    -fx-background-color: orange-primary-color;
+}
+
 
 /*----------CHART STYLING----------*/
 .chart-title {
@@ -175,4 +230,12 @@
 }
 .chart-pie-label {
     -fx-fill: primary-text-color;
+}
+
+/*----------CHECKBOX STYLING----------*/
+.check-box .box {
+    -fx-background-color: orange-primary-color;
+}
+.check-box:selected .mark {
+    -fx-background-color: primary-background-color;
 }
