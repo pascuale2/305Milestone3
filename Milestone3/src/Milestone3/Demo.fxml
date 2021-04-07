@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -26,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone3.MainController">
+<AnchorPane id="AnchorPane" prefHeight="863.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Milestone3.MainController">
    <children>
 
       <TabPane fx:id="tab" prefHeight="852.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -262,7 +261,7 @@
                               </BarChart>
                               <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
                                  <children>
-                                    <ChoiceBox fx:id="wardSelect" prefHeight="25.0" prefWidth="167.0" />
+                                    <ComboBox fx:id="wardSelect" prefHeight="25.0" prefWidth="167.0" />
                                   <Button fx:id="seeWard" mnemonicParsing="false" onAction="#wardSelectBtnHandler" prefHeight="25.0" prefWidth="78.0" text="See Ward" />
                                  </children>
                                  <padding>
@@ -295,7 +294,7 @@
                               </Label>
                               <HBox alignment="TOP_CENTER" spacing="20.0">
                                  <children>
-                                    <ChoiceBox fx:id="pChartSelect" prefHeight="25.0" prefWidth="173.0" />
+                                    <ComboBox fx:id="pChartSelect" prefHeight="25.0" prefWidth="173.0" />
                                     <Button fx:id="go" mnemonicParsing="false" onAction="#pChartSelect" prefHeight="25.0" prefWidth="59.0" text="Go" />
                                  </children>
                                  <padding>

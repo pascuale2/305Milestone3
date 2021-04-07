@@ -97,16 +97,21 @@
     -fx-border-color: primary-background-color;
 }
 
-/*----------COMBOBOX STYLING----------*/
+/*----------COMBOBOX/CHOICEBOX STYLING----------*/
 .combo-box {
     -fx-background-color: text-fill-brackground;
-    -fx-text-fill: primary-text-color;
+    -fx-text-fill: text-white;
 }
 
-.combo-box .list-view {
+.combo-box-popup .list-cell {    
     -fx-background-color: text-fill-brackground;
-    -fx-text-fill: primary-text-color;
+    -fx-text-fill: text-white;
 }
+.combo-box-popup .list-cell:hover {
+    -fx-text-fill: button-hover-color;
+    -fx-background-color: orange-primary-color;
+}
+
 
 /*----------TILTED PANE STYLING----------*/
 .titled-pane{
@@ -157,6 +162,9 @@
 /*----------CHART STYLING----------*/
 .chart-title {
     -fx-text-fill: primary-text-color;
+}
+.bar-chart .chart-content .chart-plot-background{
+    -fx-background-color: primary-background-color;
 }
 
 .axis-label {
