@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Milestone2;
+package Milestone3;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -372,31 +372,6 @@ public class PropertyHandler {
         }
         return targetAccount;
     }
-    
-    /**
-     * promptUserFindAccount -- prompts the user for an account number,
-     *  gets the number, converts to int, and then calls findAccount
-     * @author Korey Sniezek
-     * @since MS1
-     * @version 1.0
-     * @return returns the found property
-     */
-    
-    public Property promptUserFindAccount(){
-        
-        Property target = null;
-        System.out.print("Find a property assessment by account number:");
-        try{
-            int accountNum = Integer.parseInt(userStringInput());
-            target = findAccount(accountNum);
-        }
-        catch(Exception e){
-            System.out.println("Cannot get property by account number");
-            return null;
-        }
-        return target;
-        
-    }
     /**
      * getStatString -- return a string of all descriptive stats for all properties
      *  loaded, created instead of modifying printDescriptiveStats
@@ -502,47 +477,6 @@ public class PropertyHandler {
      */
     public ObservableList<Property> getAllProperties(){
         return properties;
-    }
-    
-    /**
-     * promptAndGetNeighbourhood -- prompt the user for a neighbourhood and 
-     *  create and return a new Neighbourhood, which is a property handler
-     *  containing only objects from that neighbourhood
-     * @author Korey Sniezek
-     * @version 1.0
-     * @return Neighbourhood object
-     * @since MS1
-     * @throws FileNotFoundException
-     */
-    public Neighbourhood promptAndGetNeighbourhood() throws FileNotFoundException {
-        System.out.print("Neighbourhhood: ");
-        Neighbourhood temp = new Neighbourhood(this, userStringInput());
-        
-        if(temp.getAllProperties().isEmpty()){
-            System.out.println("Property not found."); 
-            return null;
-        }
-        return temp;
-    }
-    /**
-     * promptAndGetAssesssment -- propmts the user for an assessment name 
-     *  populates an Assessment property handler with properties that match
-     *  the name
-     * @author Korey Sniezek
-     * @since Lab3
-     * @version 1.0
-     * @return Assessment
-     * @throws FileNotFoundException
-     */
-    public Assessment promptAndGetAssessment() throws FileNotFoundException{
-        System.out.print("Assessment class:");
-        Assessment temp = new Assessment(this, userStringInput());
-        
-        if(temp.getAllProperties().isEmpty()){
-            System.out.println("Property not found.");
-            return null;
-        }
-        return temp;
     }
     
     /**

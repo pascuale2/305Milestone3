@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Milestone2;
+package Milestone3;
 
 import java.net.URL;
 import java.text.NumberFormat;
@@ -161,7 +161,7 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        handler = Milestone2.handler;
+        handler = Milestone3.handler;
         resetTable();
         setBChartData();
 

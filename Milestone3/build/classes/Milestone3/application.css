@@ -105,6 +105,19 @@
     -fx-border-color: primary-background-color;
 }
 
+.chart-title {
+    -fx-text-fill: primary-text-color;
+}
+
+.axis-label {
+    -fx-text-fill: primary-text-color;
+}
+.chart-pie-label {
+    -fx-fill: primary-text-color;
+}
+.chart-pie-label {
+    -fx-fill: primary-text-color;
+}
 
 /*----------COMBOBOX STYLING----------*/
 .combo-box {
