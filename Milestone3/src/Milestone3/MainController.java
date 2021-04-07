@@ -88,9 +88,9 @@ public class MainController implements Initializable {
     @FXML
     private PieChart piechart;
     @FXML
-    private ChoiceBox wardSelect;
+    private ComboBox wardSelect;
     @FXML
-    private ChoiceBox pChartSelect;
+    private ComboBox pChartSelect;
     @FXML
     private TabPane tab;
     @FXML
