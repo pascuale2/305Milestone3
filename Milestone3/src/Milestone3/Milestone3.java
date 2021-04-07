@@ -57,8 +57,8 @@ public class Milestone3 extends Application{
         Boolean readFromUrl = true;
         try {
             // initialize property handler
-            //handler = new PropertyHandler("Property_Assessment_Data.csv", !readFromUrl);
-            handler = new PropertyHandler("https://data.edmonton.ca/api/views/q7d6-ambg/rows.csv?accessType=DOWNLOAD&api_foundry=true", readFromUrl);
+            handler = new PropertyHandler("Property_Assessment_Data.csv", !readFromUrl);
+            //handler = new PropertyHandler("https://data.edmonton.ca/api/views/q7d6-ambg/rows.csv?accessType=DOWNLOAD&api_foundry=true", readFromUrl);
         } catch (IOException ex) {
             Logger.getLogger(Milestone3.class.getName()).log(Level.SEVERE, null, ex);
         }

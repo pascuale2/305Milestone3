@@ -97,53 +97,6 @@ public class PropertyHandler {
         }
         br.close();
     }
-    
-    /**
-     * loadPropertyFromFile -- this method prompts the user for a filename
-     *  and loads all values into the property list
-     *  This prevents child classes from attempting to load from file
-     *  when compared to previous versions
-     * @author Korey Sniezek
-     * @version 1.0
-     * @since MS1
-     * @throws FileNotFoundException
-     */
-    public void loadPropertyFromFile() throws FileNotFoundException {
-        String raw;
-        
-        
-        System.out.print("Please Enter a filename:");
-        String fileName = userStringInput();
-        
-        try{
-            scan = new Scanner(new File(fileName));
-        }
-        catch(Exception e){
-            System.out.println("File not found.");
-            return;                    
-        }
-        
-        scan.useDelimiter(","); //May be extraneous, check later
-        scan.nextLine();
-        
-        while (scan.hasNext()) {
-            
-            raw = scan.nextLine();
-            
-            // Try to create with line, announce bad data and display if fail
-            try{
-                properties.add(new Property(raw));
-            }
-            catch(Exception exc){
-                System.out.println("Bad line of data:");
-                System.out.println(raw);
-            }
-            
-            
-        }
-        
-        scan.close();
-    }
     /**
      * getNumberOfProperties -- This method returns the number of items in the list of properties
      * 
@@ -397,74 +350,6 @@ public class PropertyHandler {
         
         
         return stats;
-    }
-    /**
-     * printDescriptiveStats -- print all descriptive stats for all properties
-     *  loaded
-     * 
-     * @author Korey Sniezek
-     * @version 2.0
-     * @since MS1
-     * 
-     */
-    
-    public void printDescriptiveStats() {
-        
-       
-        //use a number formatter to get properly formatted currency amounts
-        NumberFormat numFormat = NumberFormat.getCurrencyInstance(Locale.CANADA);
-        
-        //print n
-        System.out.print("n = ");
-        System.out.println( getNumberOfProperties());
-        
-        // print min
-        System.out.print("min = ");
-        System.out.println(numFormat.format(getMin()));
-        
-        //print max
-        System.out.print("max = ");
-        System.out.println(numFormat.format(getMax()));
-        
-        //print range
-        System.out.print("Range = ");
-        System.out.println(numFormat.format(getRange()));
-        
-        //print mean
-        System.out.print("Mean = ");
-        System.out.println(numFormat.format(getMean()));
-        
-        //print standerd deviation
-        System.out.print("sd = ");
-        System.out.println(numFormat.format(getStDev()));
-        
-        //print median
-        System.out.print("median = ");
-        System.out.println(numFormat.format(getMedian()));
-        System.out.println();
-    }
-    
-    /**
-     * userStringInput -- Creates a scanner and gets user string input
-     * @author Korey Sniezek
-     * @version 1.0
-     * @since MS1
-     * @return user string
-     */
-    public String userStringInput () {
-        Scanner console = null;
-        String rString = "";
-        try{
-            console = new Scanner(System.in);
-        }
-        catch(Exception e){
-            System.out.println("Stdin not found.");
-            System.exit(1);
-        }
-        if(console.hasNextLine()){
-            rString = console.nextLine();
-        }
-        return rString;
     }
     
     /**
