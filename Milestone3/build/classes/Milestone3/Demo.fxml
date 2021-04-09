@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -148,7 +147,7 @@
                                              <content>
                                                 <ScrollPane id="tiltedScrollPane" prefHeight="209.0" prefWidth="232.0">
                                                   <content>
-                                                    <AnchorPane id="tiltedPaneContent" minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="230.0">
+                                                    <AnchorPane id="tiltedPaneContent" minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="230.0">
                                                          <children>
                                                             <CheckBox fx:id="accountCheckbox" contentDisplay="CENTER" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" text="Account" textFill="#ededed">
                                                                <font>
@@ -195,6 +194,11 @@
                                                                   <Font name="SansSerif Regular" size="14.0" />
                                                                </font>
                                                             </CheckBox>
+                                                            <CheckBox fx:id="wardCheckbox" layoutX="14.0" mnemonicParsing="false" text="Ward" textFill="#ededed" AnchorPane.topAnchor="230.0">
+                                                               <font>
+                                                                  <Font name="SansSerif Regular" size="14.0" />
+                                                               </font>
+                                                            </CheckBox>
                                                          </children>
                                                       </AnchorPane>
                                                   </content>
@@ -226,6 +230,7 @@
                                         <TableColumn fx:id="nCol" minWidth="0.0" prefWidth="200.0" text="Neighbourhood" visible="false" />
                                         <TableColumn fx:id="latCol" minWidth="0.0" prefWidth="100.0" text="Latitude" visible="false" />
                                         <TableColumn fx:id="longCol" prefWidth="100.0" text="Longitude" visible="false" />
+                                          <TableColumn fx:id="wardCol" prefWidth="75.0" text="Ward" visible="false" />
                                         
                                       </columns>
                                     </TableView>
@@ -256,7 +261,7 @@
                               </BarChart>
                               <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
                                  <children>
-                                    <ChoiceBox fx:id="wardSelect" prefHeight="25.0" prefWidth="167.0" />
+                                    <ComboBox fx:id="wardSelect" prefHeight="25.0" prefWidth="167.0" />
                                   <Button fx:id="seeWard" mnemonicParsing="false" onAction="#wardSelectBtnHandler" prefHeight="25.0" prefWidth="78.0" text="See Ward" />
                                  </children>
                                  <padding>
@@ -289,7 +294,7 @@
                               </Label>
                               <HBox alignment="TOP_CENTER" spacing="20.0">
                                  <children>
-                                    <ChoiceBox fx:id="pChartSelect" prefHeight="25.0" prefWidth="173.0" />
+                                    <ComboBox fx:id="pChartSelect" prefHeight="25.0" prefWidth="173.0" />
                                     <Button fx:id="go" mnemonicParsing="false" onAction="#pChartSelect" prefHeight="25.0" prefWidth="59.0" text="Go" />
                                  </children>
                                  <padding>

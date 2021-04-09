@@ -342,6 +342,9 @@ public class MainController implements Initializable {
      */
     @FXML
     public void wardSelectBtnHandler() {
+        if (wardSelect.getValue() == null){
+            return;
+        }
         ward = wardSelect.getValue().toString();
         pieChartTab.setDisable(false);
         nbrhdPieData();
